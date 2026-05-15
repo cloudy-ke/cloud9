@@ -196,6 +196,7 @@
     }
     </script>
 
+    <!-- JSON-LD + fonts -->
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -292,138 +293,162 @@
         </div>
     </section>
 
-    <!-- ========== Trust / Reviews Section ========== -->
+    <!-- ========== Trust / Reviews Carousel ========== -->
     <section id="reviews" class="reviews" aria-label="Customer reviews and delivery proof">
         <div class="container">
             <h2 class="section-title">Trusted by Customers Across Kenya</h2>
             <p class="reviews-intro">Real WhatsApp screenshots from people who have received their orders. See what our customers say about Cloud9.ke.</p>
 
-            <div class="reviews-grid">
-                <!-- ==== Add a review-card block for each screenshot ==== -->
-                <!--
-                Layout for a new review card:
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/your-screenshot.jpg" alt="WhatsApp screenshot review from customer" class="review-card-image" loading="lazy">
+            <div class="reviews-carousel">
+
+                <div class="rc-track" id="rcTrack">
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"Arrived safely — quality is 💯 the way it looks in the photos. Will definitely order again!"</p>
+                                <span class="review-name">— Verified Buyer, Nairobi</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"Delivery was super fast and product quality is amazing! Highly recommend."</p>
-                        <span class="review-name">— Customer Name, Nairobi</span>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review2.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"Fast delivery &amp; everything was packed neatly. Ordered again the same week — top service."</p>
+                                <span class="review-name">— Verified Buyer, Mombasa</span>
+                            </div>
+                        </div>
                     </div>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review3.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"No fuss, no drama — item came exactly as pictured. Honest vendor, 10/10."</p>
+                                <span class="review-name">— Verified Buyer, Kisumu</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review4.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </span>
+                                <p class="review-text">"Very happy with my order! Delivery guy was polite and the product quality is worth every shilling."</p>
+                                <span class="review-name">— Verified Buyer, Nakuru</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review5.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"Communication was fast and the package arrived intact. Product works perfectly. Thank you Cloud9.ke!"</p>
+                                <span class="review-name">— Verified Buyer, Eldoret</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review6.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"Order placed, tracking shared, delivered. What more could you ask for? The item itself is exactly as advertised."</p>
+                                <span class="review-name">— Verified Buyer, Thika</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review7.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"My third order from Cloud9.ke — 3 for 3 flawless deliveries. Reliable and honest. Keep it up!"</p>
+                                <span class="review-name">— Verified Buyer, Nairobi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review8.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"Delivery guy showed up right on time, everything was in good condition. Highly recommended for anyone in Nairobi."</p>
+                                <span class="review-name">— Verified Buyer, Nairobi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rc-slide">
+                        <div class="review-card">
+                            <div class="review-card-image-wrapper">
+                                <img src="images/reviews/review9.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
+                            </div>
+                            <div class="review-card-info">
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </span>
+                                <p class="review-text">"Ordered for a friend, they couldn't stop talking about it. Cloud9.ke never disappoints!"</p>
+                                <span class="review-name">— Verified Buyer, Mombasa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /rc-track -->
+
+                <button class="rc-arrow rc-prev" id="rcPrev" aria-label="Previous review">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="rc-arrow rc-next" id="rcNext" aria-label="Next review">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="rc-dots" id="rcDots">
+                    <button class="rc-dot active" data-index="0" aria-label="Go to review 1"></button>
+                    <button class="rc-dot" data-index="1" aria-label="Go to review 2"></button>
+                    <button class="rc-dot" data-index="2" aria-label="Go to review 3"></button>
+                    <button class="rc-dot" data-index="3" aria-label="Go to review 4"></button>
+                    <button class="rc-dot" data-index="4" aria-label="Go to review 5"></button>
+                    <button class="rc-dot" data-index="5" aria-label="Go to review 6"></button>
+                    <button class="rc-dot" data-index="6" aria-label="Go to review 7"></button>
+                    <button class="rc-dot" data-index="7" aria-label="Go to review 8"></button>
+                    <button class="rc-dot" data-index="8" aria-label="Go to review 9"></button>
                 </div>
-                -->
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"Arrived safely — quality is 💯 the way it looks in the photos. Will definitely order again!"</p>
-                        <span class="review-name">— Verified Buyer, Nairobi</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review2.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"Fast delivery &amp; everything was packed neatly. Ordered again the same week — top service."</p>
-                        <span class="review-name">— Verified Buyer, Mombasa</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review3.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"No fuss, no drama — item came exactly as pictured. Honest vendor, 10/10."</p>
-                        <span class="review-name">— Verified Buyer, Kisumu</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review4.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        </span>
-                        <p class="review-text">"Very happy with my order! Delivery guy was polite and the product quality is worth every shilling."</p>
-                        <span class="review-name">— Verified Buyer, Nakuru</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review5.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"Communication was fast and the package arrived intact. Product works perfectly. Thank you Cloud9.ke!"</p>
-                        <span class="review-name">— Verified Buyer, Eldoret</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review6.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"Order placed, tracking shared, delivered. What more could you ask for? The item itself is exactly as advertised."</p>
-                        <span class="review-name">— Verified Buyer, Thika</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review7.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"My third order from Cloud9.ke — 3 for 3 flawless deliveries. Reliable and honest. Keep it up!"</p>
-                        <span class="review-name">— Verified Buyer, Nairobi</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review8.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"Delivery guy showed up right on time, everything was in good condition. Highly recommended for anyone in Nairobi."</p>
-                        <span class="review-name">— Verified Buyer, Nairobi</span>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-image-wrapper">
-                        <img src="images/reviews/review9.jpeg" alt="WhatsApp screenshot — customer delivery confirmation" class="review-card-image" loading="lazy">
-                    </div>
-                    <div class="review-card-info">
-                        <span class="review-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </span>
-                        <p class="review-text">"Ordered for a friend, they couldn't stop talking about it. Cloud9.ke never disappoints!"</p>
-                        <span class="review-name">— Verified Buyer, Mombasa</span>
-                    </div>
-                </div>
-            </div>
+            </div><!-- /reviews-carousel -->
         </div>
     </section>
 

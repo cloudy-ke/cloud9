@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initScrollAnimations();
         initImageFallbacks();
         initHeroParallax();
+        initReviewsCarousel();
     });
 
     function initNavigation() {
@@ -295,5 +296,76 @@ document.addEventListener('DOMContentLoaded', function() {
                 ticking = true;
             }
         });
+    }
+
+    // ─── Reviews Carousel ───────────────────────────────────
+    function initReviewsCarousel() {
+        var track    = document.getElementById('rcTrack');
+        var prevBtn  = document.getElementById('rcPrev');
+        var nextBtn  = document.getElementById('rcNext');
+        var dotsWrap = document.getElementById('rcDots');
+        if (!track || !prevBtn || !nextBtn) return;
+
+        var slides = track.querySelectorAll('.rc-slide');
+        var dots   = dotsWrap ? dotsWrap.querySelectorAll('.rc-dot') : [];
+        var count  = slides.length;
+        if (count < 2) return;
+
+        var current = 0;
+        var autoplayTimer;
+
+        function goTo(idx) {
+            current = (idx + count) % count;
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            if (dots.length) {
+                dots.forEach(function(d, i) {
+                    d.classList.toggle('active', i === current);
+                });
+            }
+        }
+
+        function startAutoplay() {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(function() { goTo(current + 1); }, 4500);
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayTimer);
+        }
+
+        prevBtn.addEventListener('click', function() { stopAutoplay(); goTo(current - 1); startAutoplay(); });
+        nextBtn.addEventListener('click', function() { stopAutoplay(); goTo(current + 1); startAutoplay(); });
+
+        if (dotsWrap) {
+            dotsWrap.addEventListener('click', function(e) {
+                if (e.target.classList.contains('rc-dot')) {
+                    stopAutoplay();
+                    goTo(parseInt(e.target.dataset.index));
+                    startAutoplay();
+                }
+            });
+        }
+
+        // Touch / swipe support
+        var startX = 0;
+        track.addEventListener('touchstart', function(e) { startX = e.changedTouches[0].screenX; }, { passive: true });
+        track.addEventListener('touchend', function(e) {
+            var diff = startX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 40) {
+                stopAutoplay();
+                diff > 0 ? goTo(current + 1) : goTo(current - 1);
+                startAutoplay();
+            }
+        }, { passive: true });
+
+        startAutoplay();
+        // Pause when section is out of view
+        var section = track.closest('section');
+        if (section) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries[0].isIntersecting ? startAutoplay() : stopAutoplay();
+            }, { threshold: 0.2 });
+            observer.observe(section);
+        }
     }
 })();

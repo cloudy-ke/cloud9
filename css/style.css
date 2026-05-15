@@ -984,14 +984,63 @@ h4 {
     line-height: 1.65;
 }
 
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+/* ============================================================
+   TRUST / REVIEWS — CAROUSEL
+   ============================================================ */
+.reviews {
+    padding: 80px 0 100px;
+    background: var(--bg-light);
+    position: relative;
+    overflow: hidden;
 }
 
-/* ---- Review Card ---- */
+.reviews .section-title {
+    margin-bottom: 1rem;
+}
+
+.reviews-intro {
+    text-align: center;
+    color: var(--text-light);
+    max-width: 620px;
+    margin: -0.8rem auto 2.5rem;
+    font-size: 1.05rem;
+    line-height: 1.65;
+}
+
+/* ─── Carousel shell ─── */
+.reviews-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(8,24,14,0.5) 100%);
+    border: 1px solid rgba(76,187,88,0.12);
+    padding: 12px 56px 52px;
+}
+
+.rc-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.rc-slide {
+    flex: 0 0 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+/* Desktop — show 2 cards at once so edges of adjacent card peek through */
+@media (min-width: 769px) {
+    .rc-slide {
+        flex: 0 0 50%;
+    }
+    .rc-slide ~ .rc-slide {
+        flex: 0 0 50%;
+    }
+}
+
+/* ─── Review Card (unchased from grid, kept for carousel use) ─── */
 .review-card {
     background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(8,24,14,0.65));
     backdrop-filter: blur(22px);
@@ -1000,11 +1049,9 @@ h4 {
     overflow: hidden;
     border: 1px solid rgba(76,187,88,0.18);
     box-shadow: 0 14px 50px rgba(0,0,0,0.22);
-    transition: var(--transition);
 }
 
 .review-card:hover {
-    transform: translateY(-6px);
     box-shadow: 0 24px 60px rgba(33,115,61,0.3);
     border-color: rgba(76,187,88,0.4);
 }
@@ -1028,9 +1075,9 @@ h4 {
     transform: scale(1.04);
 }
 
-/* WhatsApp badge on card image */
+/* WhatsApp badge */
 .review-card-image-wrapper::after {
-    content: '\f232';                     /* fa-whatsapp */
+    content: '\f232';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     position: absolute;
@@ -1049,43 +1096,110 @@ h4 {
 }
 
 .review-card-info {
-    padding: 1.4rem 1.6rem 1.6rem;
+    padding: 1.3rem 1.6rem 1.5rem;
     text-align: center;
 }
 
 .review-rating {
     color: var(--accent-color);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     letter-spacing: 3px;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
     display: inline-block;
 }
 
-.review-rating .fa-star {
+.review-rating .fa-star,
+.review-rating .fa-star-half-alt {
     color: var(--accent-color);
 }
 
 .review-text {
     color: var(--text-light);
-    font-size: 0.95rem;
-    line-height: 1.65;
+    font-size: 0.9rem;
+    line-height: 1.6;
     font-style: italic;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .review-name {
     color: var(--secondary-color);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 700;
 }
 
-/* Empty / placeholder hint */
+/* ─── Arrows ─── */
+.rc-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.rc-arrow:hover,
+.rc-arrow:focus {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: #08140a;
+    border-color: transparent;
+    outline: none;
+    box-shadow: 0 6px 20px rgba(76,187,88,0.4);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.rc-prev { left: 10px; }
+.rc-next { right: 10px; }
+
+/* ─── Dots ─── */
+.rc-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.rc-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.28);
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.rc-dot:hover { background: rgba(255,255,255,0.55); }
+
+.rc-dot.active {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    transform: scale(1.3);
+    box-shadow: 0 2px 10px rgba(76,187,88,0.5);
+}
+
+/* ─── Empty-state helper (kept for reference) ─── */
 .reviews-empty-hint {
-    grid-column: 1 / -1;
     text-align: center;
     padding: 3rem 1rem;
     color: var(--text-light);
     font-size: 0.95rem;
+    display: none; /* not used once cards are live — hides gracefully */
 }
 
 .reviews-empty-hint i {
@@ -1104,19 +1218,40 @@ h4 {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .reviews-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.4rem;
+    .reviews { padding: 60px 0 90px; }
+
+    .reviews-carousel {
+        padding: 10px 46px 48px;
     }
+
+    .rc-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    .rc-prev { left: 6px; }
+    .rc-next { right: 6px; }
+
+    .rc-dots { gap: 6px; }
+    .rc-dot   { width: 8px; height: 8px; }
 }
 
 @media (max-width: 480px) {
-    .reviews-grid {
-        grid-template-columns: 1fr;
+    .reviews { padding: 50px 0 80px; }
+
+    .reviews-intro { font-size: 0.95rem; }
+
+    .reviews-carousel {
+        padding: 8px 38px 44px;
+        border-radius: 14px;
     }
-    .reviews-intro {
-        font-size: 0.95rem;
-    }
+
+    .rc-slide    { flex: 0 0 100%; }
+    .rc-arrow    { width: 34px; height: 34px; font-size: 0.9rem; }
+    .rc-prev     { left: 4px; }
+    .rc-next     { right: 4px; }
+    .rc-dots     { bottom: 12px; }
 }
 
 /* Footer */
