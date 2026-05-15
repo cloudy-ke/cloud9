@@ -1,6 +1,6 @@
-﻿// Product Data Structure — one entry per product folder in images/
+// Product Data Structure � one entry per product folder in images/
 const products = [
-    // ── Folder: Gpen/ ──
+    // ?? Folder: Gpen/ ??
     {
         id: 1,
         name: "Gpen - Dry Herb Vaporizer",
@@ -17,12 +17,12 @@ const products = [
         description: "Premium dry herb vaporizer with durable aluminum body and transparent viewing window. Ultra-portable, discreet design perfect for on-the-go sessions.",
         badge: "Best Seller"
     },
-    // ── Folder: gun_lighter/ ──
+    // ?? Folder: gun_lighter/ ??
     {
         id: 2,
         name: "Gun Lighter",
         category: "lighters",
-        price: 1499,
+        price: 1799,
         image: "images/gun_lighter/gun.jpeg",
         images: [
             "images/gun_lighter/gun.jpeg",
@@ -32,9 +32,25 @@ const products = [
         description: "Sleek gun-style lighter with windproof flame and rugged metallic finish. A reliable ignition tool for every occasion.",
         badge: "New"
     },
-    // ── Folder: plastic_grinder/ ──
+    // ?? Folder: pocket_scale/ ??
     {
         id: 3,
+        name: "200g Pocket Scale",
+        category: "misc",
+        price: 1499,
+        image: "images/pocket_scale/Pocket_scale.jpeg",
+        images: [
+            "images/pocket_scale/Pocket_scale.jpeg",
+            "images/pocket_scale/pocket_scale1.jpeg",
+            "images/pocket_scale/pocket_scale2.jpeg",
+            "images/pocket_scale/pocket_scale3.jpeg"
+        ],
+        description: "Precision 200g digital pocket scale with high-accuracy sensors and a sleek LCD display. Perfect for weighing herbs, spices, or small items on the go.",
+        badge: "Accurate"
+    },
+    // ?? Folder: plastic_grinder/ ??
+    {
+        id: 4,
         name: "Plastic Herb Grinder",
         category: "grinders",
         price: 699,
@@ -47,9 +63,9 @@ const products = [
         description: "Lightweight and durable plastic herb grinder perfect for daily use. Sharp teeth grind material evenly and quickly.",
         badge: ""
     },
-    // ── Folder: rolling_machine/ ──
+    // ?? Folder: rolling_machine/ ??
     {
-        id: 4,
+        id: 5,
         name: "Rolling Machine",
         category: "rolling-machines",
         price: 1199,
@@ -62,9 +78,9 @@ const products = [
         description: "Classic manual rolling machine that produces perfectly rolled joints every time. Adjustable tightness, compact and portable.",
         badge: ""
     },
-    // ── Folder: ciggerate_holder/ ──
+    // ?? Folder: ciggerate_holder/ ??
     {
-        id: 5,
+        id: 6,
         name: "Cigarette Holder",
         category: "misc",
         price: 899,
@@ -77,12 +93,12 @@ const products = [
         description: "Elegant cigarette holder with a premium metallic finish. Keeps your hands clean and the experience smoother.",
         badge: ""
     },
-    // ── Folder: plastic_rolling_machine/ ──
+    // ?? Folder: plastic_rolling_machine/ ??
     {
-        id: 6,
+        id: 7,
         name: "Plastic Rolling Machine",
         category: "rolling-machines",
-        price: 999,
+        price: 799,
         image: "images/plastic_rolling_machine/rolling.jpeg",
         images: [
             "images/plastic_rolling_machine/rolling.jpeg",
@@ -93,9 +109,9 @@ const products = [
         description: "Lightweight plastic rolling machine for quick and consistent rolls. Durable build, easy to operate, and compact enough to carry anywhere.",
         badge: ""
     },
-    // ── Folder: rolling_kit/ ──
+    // ?? Folder: rolling_kit/ ??
     {
-        id: 7,
+        id: 8,
         name: "Rolling Kit",
         category: "rolling-kits",
         price: 2499,
@@ -106,15 +122,15 @@ const products = [
             "images/rolling_kit/rolling_kit2.jpeg",
             "images/rolling_kit/rolling_kit3.jpeg"
         ],
-        description: "Everything you need in one convenient kit — rolling machine, papers, tips, and more. The complete starter kit for the perfect session.",
+        description: "Everything you need in one convenient kit � rolling machine, papers, tips, and more. The complete starter kit for the perfect session.",
         badge: "Bundle"
     },
-    // ── Folder: rolling_tray/ ──
+    // ?? Folder: rolling_tray/ ??
     {
-        id: 8,
+        id: 9,
         name: "Rolling Tray",
         category: "rolling-trays",
-        price: 1599,
+        price: 799,
         image: "images/rolling_tray/rolling_tray.jpeg",
         images: [
             "images/rolling_tray/rolling_tray.jpeg",
@@ -125,9 +141,9 @@ const products = [
         description: "Spacious rolling tray with raised edges to contain every crumb. Sleek design, easy to clean, and perfect for home or on-the-go sessions.",
         badge: ""
     },
-    // ── Folder: stash_glasses/ ──
+    // ?? Folder: stash_glasses/ ??
     {
-        id: 9,
+        id: 10,
         name: "Stash Glasses",
         category: "misc",
         price: 1199,
@@ -137,15 +153,15 @@ const products = [
             "images/stash_glasses/stash_glass1.jpeg",
             "images/stash_glasses/stash_glass2.jpeg"
         ],
-        description: "Discreet stash glasses with a hidden compartment. Looks like an ordinary glass — keeps your items safely concealed right in plain sight.",
+        description: "Discreet stash glasses with a hidden compartment. Looks like an ordinary glass � keeps your items safely concealed right in plain sight.",
         badge: "Stealth"
     },
-    // ── Folder: metal_grinder/ ──
+    // ?? Folder: metal_grinder/ ??
     {
-        id: 10,
+        id: 11,
         name: "Metal Herb Grinder",
         category: "grinders",
-        price: 999,
+        price: 1299,
         image: "images/metal_grinder/metal_grinder.jpeg",
         images: [
             "images/metal_grinder/metal_grinder.jpeg",
@@ -155,25 +171,25 @@ const products = [
         description: "Heavy-duty metal herb grinder with anodized finish. Sharp teeth, magnetic lid, and pollen catcher deliver a superior grind every time.",
         badge: ""
     },
-    // ── Folder: stash_belt/ ──
+    // ?? Folder: stash_belt/ ??
     {
-        id: 11,
+        id: 12,
         name: "Stash Belt",
         category: "misc",
-        price: 1099,
+        price: 699,
         image: "images/stash_belt/stash_belt1.jpeg",
         images: [
             "images/stash_belt/stash_belt1.jpeg",
             "images/stash_belt/stash_belt2.jpeg"
         ],
-        description: "Discreet stash belt with a secure hidden pocket. Wear it under your clothes — your items are safe, comfortable, and completely out of sight.",
+        description: "Discreet stash belt with a secure hidden pocket. Wear it under your clothes � your items are safe, comfortable, and completely out of sight.",
         badge: "Stealth"
     }
 ];
 
-// ─────────────────────────────────────────────────────────────
-//  Functions below are unchanged — kept for full context
-// ─────────────────────────────────────────────────────────────
+// ?????????????????????????????????????????????????????????????
+//  Functions
+// ?????????????????????????????????????????????????????????????
 
 // Function to render products
 function renderProducts(productsToRender) {
