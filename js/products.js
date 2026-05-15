@@ -97,7 +97,7 @@ const products = [
     {
         id: 7,
         name: "Rolling Kit",
-        category: " rolling-kits",
+        category: "rolling-kits",
         price: 2499,
         image: "images/rolling_kit/rolling_kit.jpeg",
         images: [
@@ -120,10 +120,7 @@ const products = [
             "images/rolling_tray/rolling_tray.jpeg",
             "images/rolling_tray/rolling_tray1.jpeg",
             "images/rolling_tray/rolling_tray2.jpeg",
-            "
-
-
-images/rolling_tray/rolling_tray3.jpeg"
+            "images/rolling_tray/rolling_tray3.jpeg"
         ],
         description: "Spacious rolling tray with raised edges to contain every crumb. Sleek design, easy to clean, and perfect for home or on-the-go sessions.",
         badge: ""
