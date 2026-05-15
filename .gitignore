@@ -1,0 +1,23 @@
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / temp
+node_modules/
+*.log
+
+# CLIs / tokens
+.env
+.env.local
+.credentials/
+
+# Build artefacts
+dist/
+out/
+
+# Kilo internal configs (if any)
+.kilo/
