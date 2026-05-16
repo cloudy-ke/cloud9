@@ -166,8 +166,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     var productId = parseInt(productModal.dataset.productId);
                     var product = products.find(function(p) { return p.id === productId; });
                     if (product) {
-                        var wa = 'https://wa.me/254705873806?text=' + encodeURIComponent(
-                            'Hello! I would like to order: ' + product.name + ' - KES ' + product.price.toFixed(2) +
+                        var wa = 'https://wa.me/25481473918?text=' + encodeURIComponent(
+                            'Hello! I would like to order: ' + product.name + ' - KES ' + product.price.toFixed(0) +
                             '\n\nPlease send delivery and payment details.'
                         );
                         window.open(wa, '_blank');
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
 
-                var whatsappNumber = '254705873806';
+                var whatsappNumber = '25481473918';
                 var waMsg = 'Hello! I am interested in the following:\n';
                 if (data.name) waMsg += 'Name: ' + data.name + '\n';
                 if (data.email) waMsg += 'Email: ' + data.email + '\n';

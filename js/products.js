@@ -61,7 +61,7 @@ const products = [
         id: 4,
         name: "Rolling Machine",
         category: "rolling-machines",
-        price: 1199,
+        price: 1499,
         image: "images/rolling_machine/rolling.jpeg",
         images: [
             "images/rolling_machine/rolling.jpeg",
@@ -238,7 +238,7 @@ function renderProducts(productsToRender) {
                 '<div class="product-category"><i class="fas ' + categoryIcon + '"></i> ' + product.category + '</div>' +
                 '<h3 class="product-title">' + product.name + '</h3>' +
                 '<p class="product-description">' + product.description + '</p>' +
-                '<div class="product-price">KES ' + product.price.toFixed(2) + '</div>' +
+                '<div class="product-price">KES ' + product.price.toFixed(0) + '</div>' +
                 '<div class="product-buttons">' +
                     '<button class="btn btn-primary view-details-btn" data-product-id="' + product.id + '"><i class="fas fa-eye"></i> View Details</button>' +
                     '<button class="btn btn-outline quick-buy-btn" data-product-id="' + product.id + '">' +
@@ -358,7 +358,7 @@ function viewProduct(productId) {
     }
 
     var modalPrice = document.getElementById('modalPrice');
-    if (modalPrice) modalPrice.textContent = 'KES ' + product.price.toFixed(2);
+    if (modalPrice) modalPrice.textContent = 'KES ' + product.price.toFixed(0);
 
     var modalBadge = document.getElementById('modalBadge');
     if (product.badge) {
@@ -479,7 +479,7 @@ function renderCartItems() {
             '<img src="' + item.image + '" alt="' + item.name + '" class="cart-item-image">' +
             '<div class="cart-item-info">' +
                 '<h4>' + item.name + '</h4>' +
-                '<p>KES ' + item.price.toFixed(2) + '</p>' +
+                '<p>KES ' + item.price.toFixed(0) + '</p>' +
                 '<div class="quantity-controls">' +
                     '<button onclick="updateCartQuantity(' + item.id + ', ' + (item.quantity - 1) + ')">-</button>' +
                     '<span>' + item.quantity + '</span>' +
@@ -496,7 +496,7 @@ function renderCartItems() {
 function updateCartTotal() {
     var total = cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
     var el = document.getElementById('cartTotal');
-    if (el) el.textContent = total.toFixed(2);
+    if (el) el.textContent = total.toFixed(0);
 }
 
 function toggleWishlist(productId) {
@@ -551,7 +551,7 @@ function renderWishlistItems() {
             '<img src="' + item.image + '" alt="' + item.name + '" class="wishlist-item-image">' +
             '<div class="wishlist-item-info">' +
                 '<h4>' + item.name + '</h4>' +
-                '<p>KES ' + item.price.toFixed(2) + '</p>' +
+                '<p>KES ' + item.price.toFixed(0) + '</p>' +
             '</div>' +
             '<div class="wishlist-item-actions">' +
                 '<button class="btn btn-primary" onclick="addToCart(' + item.id + ')">' +
@@ -581,15 +581,15 @@ function checkoutWhatsApp() {
         return;
     }
 
-    var whatsappNumber = '254705873806';
+    var whatsappNumber = '25481473918';
     var message = 'Hello! I would like to order:\n\n';
 
     cart.forEach(function(item, index) {
-        message += (index + 1) + '. ' + item.name + ' - Quantity: ' + item.quantity + ' - KES ' + (item.price * item.quantity).toFixed(2) + '\n';
+        message += (index + 1) + '. ' + item.name + ' - Quantity: ' + item.quantity + ' - KES ' + (item.price * item.quantity).toFixed(0) + '\n';
     });
 
     var total = cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
-    message += '\nTotal: KES ' + total.toFixed(2) + '\n\nPlease send details on delivery and payment.';
+    message += '\nTotal: KES ' + total.toFixed(0) + '\n\nPlease send details on delivery and payment.';
 
     var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
     window.open(whatsappUrl, '_blank');
@@ -599,8 +599,8 @@ function quickBuy(productId) {
     var product = products.find(function(p) { return p.id === productId; });
     if (!product) return;
 
-    var whatsappNumber = '254705873806';
-    var message = 'Hello! I would like to order: ' + product.name + ' - KES ' + product.price.toFixed(2) + '\n\nPlease send delivery and payment details.';
+    var whatsappNumber = '25481473918';
+    var message = 'Hello! I would like to order: ' + product.name + ' - KES ' + product.price.toFixed(0) + '\n\nPlease send delivery and payment details.';
 
     var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
     window.open(whatsappUrl, '_blank');
