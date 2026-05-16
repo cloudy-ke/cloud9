@@ -41,25 +41,9 @@ const products = [
         description: "Sleek gun-style lighter with windproof flame and rugged metallic finish. A reliable ignition tool for every occasion.",
         badge: "New"
     },
-    // ?? Folder: pocket_scale/ ??
-    {
-        id: 3,
-        name: "200g Pocket Scale",
-        category: "misc",
-        price: 1499,
-        image: "images/pocket_scale/Pocket_scale.jpeg",
-        images: [
-            "images/pocket_scale/Pocket_scale.jpeg",
-            "images/pocket_scale/pocket_scale1.jpeg",
-            "images/pocket_scale/pocket_scale2.jpeg",
-            "images/pocket_scale/pocket_scale3.jpeg"
-        ],
-        description: "Precision 200g digital pocket scale with high-accuracy sensors and a sleek LCD display. Perfect for weighing herbs, spices, or small items on the go.",
-        badge: "Accurate"
-    },
     // ?? Folder: plastic_grinder/ ??
     {
-        id: 4,
+        id: 3,
         name: "Plastic Herb Grinder",
         category: "grinders",
         price: 699,
@@ -74,7 +58,7 @@ const products = [
     },
     // ?? Folder: rolling_machine/ ??
     {
-        id: 5,
+        id: 4,
         name: "Rolling Machine",
         category: "rolling-machines",
         price: 1199,
@@ -89,7 +73,7 @@ const products = [
     },
     // ?? Folder: ciggerate_holder/ ??
     {
-        id: 6,
+        id: 5,
         name: "Cigarette Holder",
         category: "misc",
         price: 899,
@@ -104,7 +88,7 @@ const products = [
     },
     // ?? Folder: plastic_rolling_machine/ ??
     {
-        id: 7,
+        id: 6,
         name: "Plastic Rolling Machine",
         category: "rolling-machines",
         price: 799,
@@ -118,25 +102,9 @@ const products = [
         description: "Lightweight plastic rolling machine for quick and consistent rolls. Durable build, easy to operate, and compact enough to carry anywhere.",
         badge: ""
     },
-    // ?? Folder: rolling_kit/ ??
-    {
-        id: 8,
-        name: "Rolling Kit",
-        category: "rolling-kits",
-        price: 2499,
-        image: "images/rolling_kit/rolling_kit.jpeg",
-        images: [
-            "images/rolling_kit/rolling_kit.jpeg",
-            "images/rolling_kit/rolling_kit1.jpeg",
-            "images/rolling_kit/rolling_kit2.jpeg",
-            "images/rolling_kit/rolling_kit3.jpeg"
-        ],
-        description: "Everything you need in one convenient kit — rolling machine, papers, tips, and more. The complete starter kit for the perfect session.",
-        badge: "Bundle"
-    },
     // ?? Folder: rolling_tray/ ??
     {
-        id: 9,
+        id: 7,
         name: "Rolling Tray",
         category: "rolling-trays",
         price: 799,
@@ -152,7 +120,7 @@ const products = [
     },
     // ?? Folder: stash_glasses/ ??
     {
-        id: 10,
+        id: 8,
         name: "Stash Glasses",
         category: "misc",
         price: 1199,
@@ -167,7 +135,7 @@ const products = [
     },
     // ?? Folder: metal_grinder/ ??
     {
-        id: 11,
+        id: 9,
         name: "Metal Herb Grinder",
         category: "grinders",
         price: 1299,
@@ -182,7 +150,7 @@ const products = [
     },
     // ?? Folder: stash_belt/ ??
     {
-        id: 12,
+        id: 10,
         name: "Stash Belt",
         category: "misc",
         price: 699,
@@ -196,7 +164,7 @@ const products = [
     },
     // ?? Full Kit — everything you need in one bundle ??
     {
-        id: 13,
+        id: 11,
         name: "Rolling Kit Full Bundle",
         category: "rolling-kits",
         price: 4999,
@@ -271,6 +239,10 @@ function renderProducts(productsToRender) {
                 '<h3 class="product-title">' + product.name + '</h3>' +
                 '<p class="product-description">' + product.description + '</p>' +
                 '<div class="product-price">KES ' + product.price.toFixed(2) + '</div>' +
+                '<div class="product-button-row">' +
+                    '<button class="btn btn-primary product-cart-btn" data-product-id="' + product.id + '"><i class="fas fa-cart-plus"></i> Add to Cart</button>' +
+                    '<button class="btn btn-secondary product-wishlist-btn" data-product-id="' + product.id + '"><i class="far fa-heart"></i> Wishlist</button>' +
+                '</div>' +
                 '<div class="product-buttons">' +
                     '<button class="btn btn-primary view-details-btn" data-product-id="' + product.id + '"><i class="fas fa-eye"></i> View Details</button>' +
                     '<button class="btn btn-outline quick-buy-btn" data-product-id="' + product.id + '">' +
@@ -309,6 +281,20 @@ function attachProductCardListeners() {
     document.querySelectorAll('.quick-buy-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             quickBuy(parseInt(this.dataset.productId));
+        });
+    });
+
+    document.querySelectorAll('.product-cart-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            addToCart(parseInt(this.dataset.productId));
+        });
+    });
+
+    document.querySelectorAll('.product-wishlist-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleWishlist(parseInt(this.dataset.productId));
         });
     });
 }
@@ -602,6 +588,24 @@ function updateWishlistButtons() {
         var productId = parseInt(btn.dataset.productId);
         var isInWishlist = wishlist.some(function(item) { return item.id === productId; });
         btn.classList.toggle('active', isInWishlist);
+    });
+    document.querySelectorAll('.product-wishlist-btn').forEach(function(btn) {
+        var productId = parseInt(btn.dataset.productId);
+        var isInWishlist = wishlist.some(function(item) { return item.id === productId; });
+        var icon = btn.querySelector('i');
+        if (isInWishlist) {
+            btn.classList.add('active');
+            if (icon) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            }
+        } else {
+            btn.classList.remove('active');
+            if (icon) {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        }
     });
 }
 

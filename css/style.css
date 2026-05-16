@@ -829,6 +829,29 @@ h4 {
     padding: 10px 14px;
 }
 
+.product-button-row {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-button-row .btn {
+    flex: 1;
+    font-size: 0.82rem;
+    padding: 8px 10px;
+}
+
+.product-wishlist-btn {
+    color: var(--text-dark);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.product-wishlist-btn.active {
+    background: var(--secondary-color);
+    color: #fff;
+    border-color: transparent;
+}
+
 .load-more-container {
     text-align: center;
     margin-top: 2.5rem;
