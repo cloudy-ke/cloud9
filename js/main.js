@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initImageFallbacks();
         initHeroParallax();
         initReviewsCarousel();
+        initImageModal();
     });
 
     function initNavigation() {
@@ -367,5 +368,41 @@ document.addEventListener('DOMContentLoaded', function() {
             }, { threshold: 0.2 });
             observer.observe(section);
         }
+    }
+
+    function initImageModal() {
+        var modal = document.getElementById('imageModal');
+        var modalImg = document.getElementById('imageModalImg');
+        var closeBtn = document.querySelector('.image-modal-close');
+        var reviewImages = document.querySelectorAll('.review-card-image');
+
+        if (!modal || !modalImg || !closeBtn) return;
+
+        reviewImages.forEach(function(img) {
+            img.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
     }
 })();

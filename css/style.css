@@ -1049,30 +1049,40 @@ h4 {
     overflow: hidden;
     border: 1px solid rgba(76,187,88,0.18);
     box-shadow: 0 14px 50px rgba(0,0,0,0.22);
+    min-height: 100%;
+    display: flex;
 }
 
 .review-card:hover {
-    box-shadow: 0 24px 60px rgba(33,115,61,0.3);
     border-color: rgba(76,187,88,0.4);
+    box-shadow: 0 24px 60px rgba(33,115,61,0.3);
 }
 
 .review-card-image-wrapper {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
-    background: rgba(255,255,255,0.04);
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.28);
     border-bottom: 1px solid rgba(76,187,88,0.12);
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
 }
 
 .review-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    object-position: center top;
+    display: block;
+    transition: transform 0.35s ease;
+    background: rgba(0,0,0,0.1);
 }
 
 .review-card:hover .review-card-image {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 /* WhatsApp badge */
@@ -1095,73 +1105,45 @@ h4 {
     z-index: 1;
 }
 
-.review-card-info {
-    padding: 1.3rem 1.6rem 1.5rem;
-    text-align: center;
-}
-
-.review-rating {
-    color: var(--accent-color);
-    font-size: 0.9rem;
-    letter-spacing: 3px;
-    margin-bottom: 0.5rem;
-    display: inline-block;
-}
-
-.review-rating .fa-star,
-.review-rating .fa-star-half-alt {
-    color: var(--accent-color);
-}
-
-.review-text {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    font-style: italic;
-    margin-bottom: 0.75rem;
-}
-
-.review-name {
-    color: var(--secondary-color);
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
 /* ─── Arrows ─── */
 .rc-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.16);
-    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.22);
+    background: linear-gradient(180deg, rgba(13,31,19,0.92), rgba(8,24,14,0.92));
+    color: #fff;
     cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
+    display: grid;
+    place-items: center;
+    z-index: 15;
     transition: var(--transition);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.38);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-.rc-arrow:hover,
-.rc-arrow:focus {
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-    color: #08140a;
-    border-color: transparent;
-    outline: none;
-    box-shadow: 0 6px 20px rgba(76,187,88,0.4);
-    transform: translateY(-50%) scale(1.08);
+.rc-arrow i {
+    font-size: 1.05rem;
+    line-height: 1;
 }
 
 .rc-prev { left: 10px; }
 .rc-next { right: 10px; }
+
+.rc-arrow:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    border-color: transparent;
+    transform: translateY(-50%) scale(1.06);
+    box-shadow: 0 10px 28px rgba(76,187,88,0.45);
+}
+
+.rc-arrow:active {
+    transform: translateY(-50%) scale(0.98);
+}
 
 /* ─── Dots ─── */
 .rc-dots {
@@ -1221,13 +1203,17 @@ h4 {
     .reviews { padding: 60px 0 90px; }
 
     .reviews-carousel {
-        padding: 10px 46px 48px;
+        padding: 10px 50px 48px;
+    }
+
+    .review-card-image-wrapper {
+        aspect-ratio: 4 / 5;
     }
 
     .rc-arrow {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 0.95rem;
     }
 
     .rc-prev { left: 6px; }
@@ -1243,12 +1229,16 @@ h4 {
     .reviews-intro { font-size: 0.95rem; }
 
     .reviews-carousel {
-        padding: 8px 38px 44px;
+        padding: 8px 42px 44px;
         border-radius: 14px;
     }
 
+    .review-card-image-wrapper {
+        aspect-ratio: 4 / 5;
+    }
+
     .rc-slide    { flex: 0 0 100%; }
-    .rc-arrow    { width: 34px; height: 34px; font-size: 0.9rem; }
+    .rc-arrow    { width: 34px; height: 34px; font-size: 0.85rem; }
     .rc-prev     { left: 4px; }
     .rc-next     { right: 4px; }
     .rc-dots     { bottom: 12px; }
@@ -1932,5 +1922,84 @@ h4 {
     .filter-btn {
         font-size: 0.9rem;
         padding: 8px 16px;
+    }
+}
+
+/* Image Modal for Reviews */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+.image-modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1200px;
+    max-height: 90vh;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.image-modal-close:hover,
+.image-modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.review-card-image {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 768px) {
+    .image-modal-content {
+        width: 95%;
+    }
+    
+    .image-modal-close {
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
     }
 }
