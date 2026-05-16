@@ -515,7 +515,42 @@
                     <button class="btn btn-outline modal-wishlist-btn" id="modalWishlistBtn">
                         <i class="fas fa-heart"></i> Add to Wishlist
                     </button>
+                    <button class="btn btn-secondary modal-buy-now-btn" id="modalBuyNowBtn">
+                        <i class="fab fa-whatsapp"></i> Buy Now
+                    </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shopping Cart</h2>
+                <span class="close" id="closeCartModal">&times;</span>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-message">Your cart is empty</p>
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">KES <span id="cartTotal">0.00</span></div>
+                <button class="btn btn-primary btn-full" id="cartCheckoutBtn" onclick="checkoutWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div id="wishlistModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>My Wishlist</h2>
+                <span class="close" id="closeWishlistModal">&times;</span>
+            </div>
+            <div class="wishlist-items" id="wishlistItems">
+                <p class="empty-message">Your wishlist is empty</p>
             </div>
         </div>
     </div>

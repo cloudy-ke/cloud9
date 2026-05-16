@@ -123,20 +123,26 @@ document.addEventListener('DOMContentLoaded', function() {
         var cartToggle = document.getElementById('cartToggle');
         var wishlistToggle = document.getElementById('wishlistToggle');
 
+        // Generic helper – close any modal overlay
+        function closeModal(modal) {
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         if (productModal) {
             var closeButtons = productModal.querySelectorAll('.modal-close-btn');
             closeButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
-                    productModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+                    closeModal(productModal);
                 });
             });
 
             var modalCloseBtn = document.getElementById('modalCloseBtn');
             if (modalCloseBtn) {
                 modalCloseBtn.addEventListener('click', function() {
-                    productModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+                    closeModal(productModal);
                 });
             }
 
@@ -154,19 +160,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
+            var buyNowBtn = document.getElementById('modalBuyNowBtn');
+            if (buyNowBtn) {
+                buyNowBtn.addEventListener('click', function() {
+                    var productId = parseInt(productModal.dataset.productId);
+                    var product = products.find(function(p) { return p.id === productId; });
+                    if (product) {
+                        var wa = 'https://wa.me/254705873806?text=' + encodeURIComponent(
+                            'Hello! I would like to order: ' + product.name + ' - KES ' + product.price.toFixed(2) +
+                            '\n\nPlease send delivery and payment details.'
+                        );
+                        window.open(wa, '_blank');
+                    }
+                });
+            }
+
+            // Close when clicking outside the modal content
             window.addEventListener('click', function(e) {
-                if (e.target === productModal) {
-                    productModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-                if (cartModal && e.target === cartModal) {
-                    cartModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-                if (wishlistModal && e.target === wishlistModal) {
-                    wishlistModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
+                if (e.target === productModal) closeModal(productModal);
+                if (cartModal && e.target === cartModal) closeModal(cartModal);
+                if (wishlistModal && e.target === wishlistModal) closeModal(wishlistModal);
             });
         }
 
@@ -186,18 +199,23 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        window.closeCartModal = function() {
-            if (cartModal) {
-                cartModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+        // Generic .close button handler for cart / wishlist overlays
+        [cartModal, wishlistModal].forEach(function(m) {
+            if (m) {
+                m.querySelectorAll('.close').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        closeModal(m);
+                    });
+                });
             }
+        });
+
+        window.closeCartModal = function() {
+            closeModal(cartModal);
         };
 
         window.closeWishlistModal = function() {
-            if (wishlistModal) {
-                wishlistModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
+            closeModal(wishlistModal);
         };
     }
 

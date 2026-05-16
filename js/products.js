@@ -239,10 +239,6 @@ function renderProducts(productsToRender) {
                 '<h3 class="product-title">' + product.name + '</h3>' +
                 '<p class="product-description">' + product.description + '</p>' +
                 '<div class="product-price">KES ' + product.price.toFixed(2) + '</div>' +
-                '<div class="product-button-row">' +
-                    '<button class="btn btn-primary product-cart-btn" data-product-id="' + product.id + '"><i class="fas fa-cart-plus"></i> Add to Cart</button>' +
-                    '<button class="btn btn-secondary product-wishlist-btn" data-product-id="' + product.id + '"><i class="far fa-heart"></i> Wishlist</button>' +
-                '</div>' +
                 '<div class="product-buttons">' +
                     '<button class="btn btn-primary view-details-btn" data-product-id="' + product.id + '"><i class="fas fa-eye"></i> View Details</button>' +
                     '<button class="btn btn-outline quick-buy-btn" data-product-id="' + product.id + '">' +
@@ -281,20 +277,6 @@ function attachProductCardListeners() {
     document.querySelectorAll('.quick-buy-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             quickBuy(parseInt(this.dataset.productId));
-        });
-    });
-
-    document.querySelectorAll('.product-cart-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            addToCart(parseInt(this.dataset.productId));
-        });
-    });
-
-    document.querySelectorAll('.product-wishlist-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleWishlist(parseInt(this.dataset.productId));
         });
     });
 }
@@ -588,24 +570,6 @@ function updateWishlistButtons() {
         var productId = parseInt(btn.dataset.productId);
         var isInWishlist = wishlist.some(function(item) { return item.id === productId; });
         btn.classList.toggle('active', isInWishlist);
-    });
-    document.querySelectorAll('.product-wishlist-btn').forEach(function(btn) {
-        var productId = parseInt(btn.dataset.productId);
-        var isInWishlist = wishlist.some(function(item) { return item.id === productId; });
-        var icon = btn.querySelector('i');
-        if (isInWishlist) {
-            btn.classList.add('active');
-            if (icon) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-            }
-        } else {
-            btn.classList.remove('active');
-            if (icon) {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-            }
-        }
     });
 }
 
