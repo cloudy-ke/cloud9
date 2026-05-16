@@ -581,7 +581,7 @@ function checkoutWhatsApp() {
         return;
     }
 
-    var whatsappNumber = '25481473918';
+    var whatsappNumber = '254781473918';
     var message = 'Hello! I would like to order:\n\n';
 
     cart.forEach(function(item, index) {
@@ -599,7 +599,7 @@ function quickBuy(productId) {
     var product = products.find(function(p) { return p.id === productId; });
     if (!product) return;
 
-    var whatsappNumber = '25481473918';
+    var whatsappNumber = '254781473918';
     var message = 'Hello! I would like to order: ' + product.name + ' - KES ' + product.price.toFixed(0) + '\n\nPlease send delivery and payment details.';
 
     var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
