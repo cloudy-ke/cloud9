@@ -409,11 +409,23 @@ document.addEventListener('DOMContentLoaded', function() {
         var reviewImages = document.querySelectorAll('.review-card-image');
 
         if (!modal || !modalImg || !closeBtn) return;
+        var imgSources = [];
+        reviewImages.forEach(function(img) {
+            imgSources.push(img.src);
+        });
+
+        var currentIndex = 0;
+
+        function showImage(index) {
+            currentIndex = ((index % imgSources.length) + imgSources.length) % imgSources.length;
+            modalImg.src = imgSources[currentIndex];
+        }
 
         reviewImages.forEach(function(img) {
             img.addEventListener('click', function() {
+                currentIndex = imgSources.indexOf(this.src);
+                showImage(currentIndex);
                 modal.style.display = 'block';
-                modalImg.src = this.src;
                 document.body.style.overflow = 'hidden';
             });
         });
@@ -435,6 +447,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
+            if (e.key === 'ArrowRight' && modal.style.display === 'block') {
+                showImage(currentIndex + 1);
+            }
+            if (e.key === 'ArrowLeft' && modal.style.display === 'block') {
+                showImage(currentIndex - 1);
+            }
         });
+
+        // Touch / swipe support
+        var touchStartX = 0;
+        var touchEndX = 0;
+
+        modal.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        modal.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            var diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? showImage(currentIndex + 1) : showImage(currentIndex - 1);
+            }
+        }, { passive: true });
     }
 })();

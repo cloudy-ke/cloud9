@@ -6,6 +6,15 @@ const products = [
         name: "Gpen - Dry Herb Vaporizer",
         category: "vaporizers",
         price: 1999,
+        colors: [
+            { name: "Green",   hex: "#4caf50" },
+            { name: "Purple",  hex: "#9c27b0" },
+            { name: "Red",     hex: "#f44336" },
+            { name: "Black",   hex: "#212121" },
+            { name: "Silver",  hex: "#bdbdbd" },
+            { name: "Blue",    hex: "#2196f3" },
+            { name: "Gold",    hex: "#ffc107" }
+        ],
         image: "images/Gpen/Gpen.jpeg",
         images: [
             "images/Gpen/Gpen.jpeg",
@@ -184,6 +193,32 @@ const products = [
         ],
         description: "Discreet stash belt with a secure hidden pocket. Wear it under your clothes — your items are safe, comfortable, and completely out of sight.",
         badge: "Stealth"
+    },
+    // ?? Full Kit — everything you need in one bundle ??
+    {
+        id: 13,
+        name: "Rolling Kit Full Bundle",
+        category: "rolling-kits",
+        price: 4999,
+        image: "images/rolling_kit/rolling_kit.jpeg",
+        images: [
+            "images/rolling_kit/rolling_kit.jpeg",
+            "images/rolling_kit/rolling_kit1.jpeg",
+            "images/rolling_kit/rolling_kit2.jpeg",
+            "images/rolling_kit/rolling_kit3.jpeg"
+        ],
+        description: "The ultimate all-in-one starter bundle at KES 4,999 — includes: Scale, Grinder, Rolling Tray, Storage Can, Rolling Machine, Storage Pipes, Carry Bag, and Cigarette Holder. Everything you need in one package.",
+        bundleItems: [
+            "Scale",
+            "Grinder",
+            "Rolling Tray",
+            "Storage Can",
+            "Rolling Machine",
+            "Storage Pipes",
+            "Bag",
+            "Cigarette Holder"
+        ],
+        badge: "Bundle"
     }
 ];
 
@@ -307,6 +342,52 @@ function viewProduct(productId) {
 
     var modalDescription = document.getElementById('modalDescription');
     if (modalDescription) modalDescription.textContent = product.description;
+
+    // Color swatches
+    var modalColors = document.getElementById('modalColors');
+    var colorSwatchesContainer = document.getElementById('modalColorSwatches');
+    if (modalColors && colorSwatchesContainer) {
+        colorSwatchesContainer.innerHTML = '';
+        if (product.colors && product.colors.length > 0) {
+            modalColors.style.display = '';
+            product.colors.forEach(function(c) {
+                var swatch = document.createElement('div');
+                swatch.className = 'color-swatch';
+                swatch.style.backgroundColor = c.hex;
+                swatch.title = c.name;
+                swatch.dataset.colorName = c.name;
+                swatch.addEventListener('click', function() {
+                    colorSwatchesContainer.querySelectorAll('.color-swatch').forEach(function(s) {
+                        s.classList.remove('active');
+                    });
+                    swatch.classList.add('active');
+                    if (typeof showNotification === 'function') {
+                        showNotification(c.name + ' selected', 'info');
+                    }
+                });
+                colorSwatchesContainer.appendChild(swatch);
+            });
+        } else {
+            modalColors.style.display = 'none';
+        }
+    }
+
+    // Bundle items
+    var modalBundleItems = document.getElementById('modalBundleItems');
+    if (modalBundleItems) {
+        if (product.bundleItems && product.bundleItems.length > 0) {
+            modalBundleItems.style.display = '';
+            modalBundleItems.innerHTML =
+                '<span class="modal-bundle-items-label">Bundle Includes:</span>' +
+                '<ul class="bundle-list">' +
+                product.bundleItems.map(function(item) {
+                    return '<li class="bundle-item"><i class="fas fa-check"></i> ' + item + '</li>';
+                }).join('') +
+                '</ul>';
+        } else {
+            modalBundleItems.style.display = 'none';
+        }
+    }
 
     var modalPrice = document.getElementById('modalPrice');
     if (modalPrice) modalPrice.textContent = 'KES ' + product.price.toFixed(2);
