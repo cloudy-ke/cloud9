@@ -295,19 +295,30 @@ function viewProduct(productId) {
     };
 
     var modal = document.getElementById('productModal');
-    document.getElementById('modalTitle').textContent = product.name;
-    document.getElementById('modalCategory').innerHTML =
+    if (!modal) return;
+
+    var modalTitle = document.getElementById('modalTitle');
+    if (modalTitle) modalTitle.textContent = product.name;
+
+    var modalCategory = document.getElementById('modalCategory');
+    if (modalCategory) modalCategory.innerHTML =
         '<i class="fas ' + (categoryIcons[product.category] || 'fa-seedling') + '"></i> ' +
         product.category.charAt(0).toUpperCase() + product.category.slice(1);
-    document.getElementById('modalDescription').textContent = product.description;
-    document.getElementById('modalPrice').textContent = 'KES ' + product.price.toFixed(2);
+
+    var modalDescription = document.getElementById('modalDescription');
+    if (modalDescription) modalDescription.textContent = product.description;
+
+    var modalPrice = document.getElementById('modalPrice');
+    if (modalPrice) modalPrice.textContent = 'KES ' + product.price.toFixed(2);
 
     var modalBadge = document.getElementById('modalBadge');
     if (product.badge) {
-        modalBadge.textContent = product.badge;
-        modalBadge.style.display = 'inline-flex';
+        if (modalBadge) {
+            modalBadge.textContent = product.badge;
+            modalBadge.style.display = 'inline-flex';
+        }
     } else {
-        modalBadge.style.display = 'none';
+        if (modalBadge) modalBadge.style.display = 'none';
     }
 
     // Build modal carousel slides from product.images array
@@ -331,7 +342,7 @@ function viewProduct(productId) {
     document.body.style.overflow = 'hidden';
 
     // Initialize modal carousel navigation
-    initModalCarousel();
+    setTimeout(initModalCarousel, 50);
 }
 
 function filterProducts(category) {
@@ -521,7 +532,7 @@ function checkoutWhatsApp() {
         return;
     }
 
-    var whatsappNumber = '25405873806';
+    var whatsappNumber = '254705873806';
     var message = 'Hello! I would like to order:\n\n';
 
     cart.forEach(function(item, index) {
@@ -539,7 +550,7 @@ function quickBuy(productId) {
     var product = products.find(function(p) { return p.id === productId; });
     if (!product) return;
 
-    var whatsappNumber = '25405873806';
+    var whatsappNumber = '254705873806';
     var message = 'Hello! I would like to order: ' + product.name + ' - KES ' + product.price.toFixed(2) + '\n\nPlease send delivery and payment details.';
 
     var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);

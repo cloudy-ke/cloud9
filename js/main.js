@@ -124,13 +124,35 @@ document.addEventListener('DOMContentLoaded', function() {
         var wishlistToggle = document.getElementById('wishlistToggle');
 
         if (productModal) {
-            var closeButtons = productModal.querySelectorAll('.close');
+            var closeButtons = productModal.querySelectorAll('.modal-close-btn');
             closeButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
                     productModal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 });
             });
+
+            var modalCloseBtn = document.getElementById('modalCloseBtn');
+            if (modalCloseBtn) {
+                modalCloseBtn.addEventListener('click', function() {
+                    productModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+
+            var modalAddCartBtn = document.getElementById('modalAddCartBtn');
+            if (modalAddCartBtn) {
+                modalAddCartBtn.addEventListener('click', function() {
+                    if (typeof addToCartFromModal === 'function') addToCartFromModal();
+                });
+            }
+
+            var modalWishlistBtn = document.getElementById('modalWishlistBtn');
+            if (modalWishlistBtn) {
+                modalWishlistBtn.addEventListener('click', function() {
+                    if (typeof addToWishlistFromModal === 'function') addToWishlistFromModal();
+                });
+            }
 
             window.addEventListener('click', function(e) {
                 if (e.target === productModal) {
@@ -220,8 +242,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
 
-                if (productModal && productModal.style.display === 'block') {
-                    productModal.style.display = 'none';
+                var whatsappNumber = '254705873806';
+                var waMsg = 'Hello! I am interested in the following:\n';
+                if (data.name) waMsg += 'Name: ' + data.name + '\n';
+                if (data.email) waMsg += 'Email: ' + data.email + '\n';
+                if (data.product) waMsg += 'Product: ' + data.product + '\n';
+                if (data.message) waMsg += 'Message: ' + data.message + '\n';
+                var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(waMsg);
+                window.open(whatsappUrl, '_blank');
+
+                var pm = document.getElementById('productModal');
+                if (pm && pm.style.display === 'block') {
+                    pm.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }
             }, 1500);
